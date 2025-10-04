@@ -1,0 +1,40 @@
+# Configuration for hierarchical inference agent
+
+simulation:
+  name: "hierarchical_inference"
+  type: "HierarchicalInferenceAgent"
+  seed: 42
+
+agent:
+  layer_sizes: [10, 20, 15, 10]  # [obs, hidden1, hidden2, hidden3]
+  batch_size: 1
+  learning_rate: 0.005
+  precisions: [1.0, 1.0, 1.0, 1.0]
+  tau: 10.0
+  dt: 1.0
+
+training:
+  n_epochs: 150
+  n_inference_steps: 30
+  verbose: true
+
+inference:
+  n_steps: 50
+
+data:
+  n_samples: 100
+  noise_level: 0.05
+  data_type: "hierarchical"  # Hierarchically structured data
+
+logging:
+  level: "INFO"
+  log_file: "logs/hierarchical_inference.log"
+  save_plots: true
+
+output:
+  save_results: true
+  output_dir: null
+
+
+
+

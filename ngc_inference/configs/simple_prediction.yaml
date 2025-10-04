@@ -1,0 +1,40 @@
+# Configuration for simple prediction agent
+
+simulation:
+  name: "simple_prediction"
+  type: "SimplePredictionAgent"
+  seed: 42
+
+agent:
+  n_observations: 10
+  n_hidden: 20
+  batch_size: 1
+  learning_rate: 0.01
+  precision: 1.0
+  tau: 10.0
+  dt: 1.0
+
+training:
+  n_epochs: 100
+  n_inference_steps: 20
+  verbose: true
+
+inference:
+  n_steps: 30
+
+data:
+  n_samples: 50
+  noise_level: 0.1
+  data_type: "sinusoidal"  # Options: sinusoidal, random, structured
+
+logging:
+  level: "INFO"
+  log_file: "logs/simple_prediction.log"
+  save_plots: true
+
+output:
+  save_results: true
+  output_dir: null  # If null, auto-generate timestamp directory
+
+
+

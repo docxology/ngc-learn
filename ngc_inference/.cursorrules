@@ -1,0 +1,161 @@
+# NGC Inference Development Rules
+
+## Project Philosophy
+- **Neurobiological Plausibility**: All implementations use real ngclearn components (RateCell, GaussianErrorCell, DenseSynapse)
+- **Test-Driven Development**: Write tests first, implement second, verify third
+- **Modular Architecture**: Clear separation between core, simulations, orchestrators, and utilities
+- **Incremental Sophistication**: Build from simple to complex, document every step
+- **Professional Standards**: Type hints, docstrings, comprehensive logging, structured outputs
+
+## Code Style
+- Python ≥ 3.10
+- Follow PEP 8 with black formatting (line length: 88)
+- Use type hints for all function signatures
+- Docstrings in Google style for all public functions/classes
+- No redundant code sections or scripts
+
+## Documentation Standards
+- **Show, Don't Tell**: Demonstrate through working examples
+- **Comprehensive Coverage**: Document theory, implementation, usage, and testing
+- **Progressive Complexity**: Simple examples first, advanced features later
+- **Real Data Analysis**: No mock methods, always use actual computations
+
+## Active Inference Principles
+- **Free Energy Minimization**: Core principle driving all inference and learning
+- **Predictive Coding**: Hierarchical prediction error minimization
+- **Variational Inference**: Approximate posterior through recognition networks
+- **Neurobiological Components**: Leaky integrator neurons, Gaussian error units, Hebbian synapses
+
+## Testing Requirements
+- Unit tests for core functions (free_energy.py, metrics.py)
+- Integration tests for agents (simple_prediction, hierarchical_inference)
+- Simulation tests for complete workflows (orchestrators, end-to-end)
+- Real ngclearn verification tests (component creation, wiring, execution)
+- All tests must pass before commits
+
+## Logging Standards
+- Use loguru for structured logging
+- INFO level for user-facing progress
+- DEBUG level for internal state tracking
+- File + console output with rotation
+- Context-aware messages with module/function/line info
+
+## Output Management
+- Save all configurations (YAML)
+- Save all metrics (JSON with arrays converted)
+- Save all visualizations (PNG at 300 DPI)
+- Save all intermediate states (NPY for arrays)
+- Organize by timestamp: logs/runs/{timestamp}/
+
+## Visualization Standards
+- Publication-ready figures (matplotlib)
+- Free energy trajectories with annotations
+- Belief state heatmaps with colorbars
+- Multi-metric comparison plots
+- Consistent color schemes and formatting
+
+## Module Organization
+```
+src/ngc_inference/
+├── core/           # Free energy, inference base classes
+├── simulations/    # Concrete agent implementations  
+├── orchestrators/  # Thin workflow management
+└── utils/          # Logging, metrics, visualization
+
+tests/
+├── unit/           # Function-level tests
+├── integration/    # Agent-level tests
+└── simulations/    # Workflow tests
+```
+
+## Commit Standards
+- Never commit without passing tests
+- Document all major changes in commit messages
+- Keep commits focused and atomic
+- Update tests when changing functionality
+
+## Active Inference Development Workflow
+1. **Define Mathematical Formulation**: Write equations in documentation
+2. **Create Unit Tests**: Test core computations (free energy, errors)
+3. **Implement Core Functions**: With JIT compilation where appropriate
+4. **Build Agent Class**: Using real ngclearn components
+5. **Integration Tests**: Verify agent works end-to-end
+6. **Add Orchestration**: Thin coordination layer
+7. **Create Examples**: Simple → medium → complex
+8. **Document Theory & Practice**: Theory.md + examples
+9. **Performance Validation**: Benchmark and optimize
+
+## Incremental Sophistication Path
+1. **Simple Prediction**: Single-layer generative model
+2. **Hierarchical Inference**: Multi-layer predictive hierarchy
+3. **Active Inference**: Action selection via expected free energy
+4. **Temporal Dynamics**: Sequential inference over time
+5. **Multi-modal Integration**: Vision + proprioception + action
+6. **Continual Learning**: Online adaptation without catastrophic forgetting
+
+## Real ngclearn Usage
+- Always use Context for model scoping
+- Wire components with << operator
+- Compile processes with JIT for performance
+- Use advance_state and reset for dynamics
+- Dynamic commands for flexible control flow
+- Monitor compartments for debugging
+
+## Quality Checklist Before Commits
+- [ ] All tests pass (pytest tests/ -v)
+- [ ] Type hints on all functions
+- [ ] Docstrings on all public APIs
+- [ ] Logging at appropriate levels
+- [ ] Configuration saved with results
+- [ ] Visualizations generated and saved
+- [ ] Theory documented in docs/
+- [ ] Examples runnable and tested
+- [ ] No redundant or duplicate code
+- [ ] Professional, clean, interpretable code
+
+## Forbidden Practices
+- ❌ Mock methods instead of real computations
+- ❌ Redundant code or scripts
+- ❌ Commits without tests passing
+- ❌ Undocumented complex functions
+- ❌ Hard-coded paths or parameters
+- ❌ Missing type hints
+- ❌ Unstructured logging (print statements)
+- ❌ Unsaved intermediate results
+- ❌ Breaking changes without version updates
+
+## Performance Considerations
+- JIT compile inference loops with @jit
+- Use JAX operations for array computations
+- Batch process when possible
+- Profile before optimizing
+- Document computational complexity
+- Provide performance benchmarks
+
+## Collaboration Guidelines
+- Scan entire repo before making changes
+- Understand context of modifications
+- Follow existing patterns and conventions
+- Ask clarifying questions when uncertain
+- Document design decisions in comments
+- Keep chain of reasoning clear and explicit
+
+## Active Inference Specific
+- **Precision Parameters**: Always specify observation and prior precisions
+- **Integration Steps**: Document why specific n_steps chosen
+- **Learning Rates**: Justify learning rate selection
+- **Network Architecture**: Explain layer sizes and connectivity
+- **Free Energy Components**: Track accuracy and complexity separately
+- **Convergence Criteria**: Define and document stopping conditions
+
+## Environment Management
+- Use `uv` for fast package management
+- Pin all dependency versions
+- Separate dev/docs/test dependencies
+- Provide installation verification script
+- Document system requirements clearly
+- Test on multiple Python versions (3.10, 3.11)
+
+
+
+

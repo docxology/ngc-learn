@@ -1,0 +1,39 @@
+# Template for parameter sweep experiments
+
+experiment:
+  name: "learning_rate_sweep"
+  description: "Compare different learning rates"
+
+base_config:
+  simulation:
+    name: "simple_prediction"
+    type: "SimplePredictionAgent"
+    seed: 42
+  
+  agent:
+    n_observations: 10
+    n_hidden: 20
+    batch_size: 1
+    tau: 10.0
+    dt: 1.0
+  
+  training:
+    n_epochs: 50
+    n_inference_steps: 20
+    verbose: false
+
+parameter_grid:
+  agent.learning_rate: [0.001, 0.005, 0.01, 0.05, 0.1]
+  agent.precision: [0.5, 1.0, 2.0]
+
+execution:
+  parallel: false
+  max_workers: 4
+
+analysis:
+  metric_key: "final_loss"
+  minimize: true
+
+
+
+
