@@ -12,6 +12,7 @@ from jax import random
 import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
+from typing import Optional
 
 from ngc_inference.core.active_inference_agent import ActiveInferenceAgent
 from ngc_inference.utils.logging_config import setup_logging
@@ -204,7 +205,7 @@ def run_reaching_experiment(n_episodes: int = 100, max_steps: int = 50):
         if (episode + 1) % 10 == 0:
             avg_reward = jnp.mean(jnp.array(episode_rewards[-10:]))
             avg_length = jnp.mean(jnp.array(episode_lengths[-10:]))
-            print(f"Episode {episode+1"3d"}: Reward={episode_reward".2f"}, Steps={step+1"2d"}, Distance={episode_distances[-1]".3f"}")
+            print(f"Episode {episode+1:3d}: Reward={episode_reward:.2f}, Steps={step+1:2d}, Distance={episode_distances[-1]:.3f}")
 
     # Analyze results
     print("\n" + "=" * 70)
@@ -216,13 +217,13 @@ def run_reaching_experiment(n_episodes: int = 100, max_steps: int = 50):
     distances = jnp.array(episode_distances)
 
     print(f"Total episodes: {len(rewards)}")
-    print(f"Average reward: {jnp.mean(rewards):".3f"")
-    print(f"Average episode length: {jnp.mean(lengths):".1f"} steps")
-    print(f"Final distance to target: {jnp.mean(distances):".3f"")
+    print(f"Average reward: {jnp.mean(rewards):.3f}")
+    print(f"Average episode length: {jnp.mean(lengths):.1f} steps")
+    print(f"Final distance to target: {jnp.mean(distances):.3f}")
 
     # Success rate (distance < 0.2)
     success_rate = jnp.mean(distances < 0.2)
-    print(f"Success rate (distance < 0.2): {success_rate:".1%"")
+    print(f"Success rate (distance < 0.2): {success_rate:.1%}")
 
     # Save results
     results_dir = Path("logs/runs/reaching_experiment")
@@ -320,7 +321,7 @@ def run_goal_directed_vs_exploration():
     print("=" * 70)
 
     for temp_type, result in results.items():
-        print(f"{temp_type.capitalize()}: Success rate = {result['success_rate']".1%"}")
+        print(f"{temp_type.capitalize()}: Success rate = {result['success_rate']:.1%}")
 
     return results
 

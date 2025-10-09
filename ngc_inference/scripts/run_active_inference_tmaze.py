@@ -159,7 +159,7 @@ def run_tmaze_experiment(n_episodes: int = 100, reward_location: int = 3):
 
         if (episode + 1) % 10 == 0:
             avg_reward = jnp.mean(jnp.array(episode_rewards[-10:]))
-            print(f"Episode {episode+1"3d"}: Reward={reward".1f"}, Action={action}, EFE={metrics['expected_free_energies'][action]".3f"}")
+            print(f"Episode {episode+1:3d}: Reward={reward:.1f}, Action={action}, EFE={metrics['expected_free_energies'][action]:.3f}")
 
     # Analyze results
     print("\n" + "=" * 70)
@@ -169,20 +169,20 @@ def run_tmaze_experiment(n_episodes: int = 100, reward_location: int = 3):
     # Reward statistics
     rewards = jnp.array(episode_rewards)
     print(f"Total rewards: {jnp.sum(rewards)}")
-    print(f"Average reward: {jnp.mean(rewards):".3f"")
-    print(f"Success rate: {jnp.mean(rewards):".1%"")
+    print(f"Average reward: {jnp.mean(rewards):.3f}")
+    print(f"Success rate: {jnp.mean(rewards):.1%}")
 
     # Action distribution (should show exploration initially)
     actions = jnp.array(episode_actions)
     left_actions = jnp.sum(actions == 0)
     right_actions = jnp.sum(actions == 1)
-    print(f"Left actions: {left_actions} ({left_actions/len(actions)*100:".1f""})")
-    print(f"Right actions: {right_actions} ({right_actions/len(actions)*100:".1f""})")
+    print(f"Left actions: {left_actions} ({left_actions/len(actions)*100:.1f})")
+    print(f"Right actions: {right_actions} ({right_actions/len(actions)*100:.1f})")
 
     # EFE analysis
     efes = jnp.array(episode_efes)
-    print(f"Average EFE: {jnp.mean(efes):".3f"")
-    print(f"EFE std: {jnp.std(efes):".3f"")
+    print(f"Average EFE: {jnp.mean(efes):.3f}")
+    print(f"EFE std: {jnp.std(efes):.3f}")
 
     # Save results
     results_dir = Path("logs/runs/tmaze_experiment")
@@ -253,7 +253,7 @@ def run_multiple_reward_locations():
     print("=" * 70)
 
     for reward_loc, result in results.items():
-        print(f"Reward in state {reward_loc}: Final success rate = {result['final_reward_rate']".1%"}")
+        print(f"Reward in state {reward_loc}: Final success rate = {result['final_reward_rate']:.1%}")
 
     return results
 
